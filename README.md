@@ -155,21 +155,66 @@
 ---
 这个错误是因为 VuePress 2.x 需要明确指定打包工具（bundler）。让我们修复这个问题：
 
-首先，安装必要的打包工具：
+1.首先，安装必要的打包工具：
 
-安装打包工具Click to open code
+    # 如果使用 npm
+    npm install -D @vuepress/bundler-vite@next
+    
+    # 如果使用 pnpm
+    pnpm add -D @vuepress/bundler-vite@next
 
-然后，更新 VuePress 配置文件：
+2.然后，更新 VuePress 配置文件：
+    
+    import { defineUserConfig } from 'vuepress'
+    import { defaultTheme } from '@vuepress/theme-default'
+    import { viteBundler } from '@vuepress/bundler-vite'
+    
+    export default defineUserConfig({
+      bundler: viteBundler(),
+      theme: defaultTheme({
+        navbar: [
+          { text: 'Home', link: '/' },
+          { text: 'GitHub', link: 'https://github.com/vuepress/awesome-vuepress' },
+        ],
+        sidebar: 'auto'
+      }),
+      lang: 'en-US',
+      title: 'Awesome VuePress',
+      description: 'A curated list of awesome things related to VuePress'
+    })
 
-更新后的 VuePress 配置文件Click to open code
+3.为了确保所有依赖都正确安装，建议重新安装所有依赖：
 
-为了确保所有依赖都正确安装，建议重新安装所有依赖：
-
-重新安装依赖Click to open code
+    # 删除现有的 node_modules 和 lock 文件
+    rm -rf node_modules package-lock.json
+    
+    # 重新安装依赖
+    npm install -D vuepress@next @vuepress/client@next vue @vuepress/bundler-vite@next @vuepress/theme-default@next
 
 更新 package.json：
 
-更新后的 package.jsonClick to open code
+
+      {
+        "name": "awesome-vuepress",
+        "version": "1.0.0",
+        "description": "A curated list of awesome things related to VuePress",
+        "main": "index.js",
+        "scripts": {
+          "docs:dev": "vuepress dev docs",
+          "docs:build": "vuepress build docs",
+          "start": "vuepress dev docs"
+        },
+        "devDependencies": {
+          "@vuepress/bundler-vite": "2.0.0-beta.67",
+          "@vuepress/client": "2.0.0-beta.67",
+          "@vuepress/theme-default": "2.0.0-beta.67",
+          "vue": "^3.3.4",
+          "vuepress": "2.0.0-beta.67"
+        }
+      }
+
+
+
 完整的执行步骤：
   bashCopy# 1. 清理现有依赖
   rm -rf node_modules package-lock.json
