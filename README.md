@@ -216,54 +216,54 @@
 
 
 完整的执行步骤：
-  bashCopy# 1. 清理现有依赖
-  rm -rf node_modules package-lock.json
-  
-  # 2. 重新安装所有依赖
-  npm install -D vuepress@2.0.0-beta.67 @vuepress/client@2.0.0-beta.67 vue@3.3.4 @vuepress/bundler-vite@2.0.0-beta.67 @vuepress/theme-default@2.0.0-beta.67
-  
-  # 3. 确保 docs/.vuepress/config.js 使用了上面提供的更新后的配置
-  
-  # 4. 启动开发服务器
-  npm start
+    bashCopy# 1. 清理现有依赖
+    rm -rf node_modules package-lock.json
+    
+    # 2. 重新安装所有依赖
+    npm install -D vuepress@2.0.0-beta.67 @vuepress/client@2.0.0-beta.67 vue@3.3.4 @vuepress/bundler-vite@2.0.0-beta.67 @vuepress/theme-default@2.0.0-beta.67
+    
+    # 3. 确保 docs/.vuepress/config.js 使用了上面提供的更新后的配置
+    
+    # 4. 启动开发服务器
+    npm start
 
 可能的问题和解决方案：
 
 
 如果遇到 Node.js 版本问题：
 
-  bashCopy# 确保使用 Node.js 16.x 或更高版本
-  node --version
-  # 如果需要，切换 Node.js 版本
-  nvm use 16
+    bashCopy# 确保使用 Node.js 16.x 或更高版本
+    node --version
+    # 如果需要，切换 Node.js 版本
+    nvm use 16
 
 如果遇到其他依赖相关的错误：
 
-  bashCopy# 清除 npm 缓存
-  npm cache clean --force
+    bashCopy# 清除 npm 缓存
+    npm cache clean --force
 
 调试建议：
 
 
 检查是否所有文件都在正确的位置：
 
-bashCopytree -L 2
-# 应该看到类似这样的结构：
-.
-├── docs
-│   ├── .vuepress
-│   └── README.md
-├── node_modules
-└── package.json
+    bashCopytree -L 2
+    # 应该看到类似这样的结构：
+    .
+    ├── docs
+    │   ├── .vuepress
+    │   └── README.md
+    ├── node_modules
+    └── package.json
 
 检查 config.js 是否被正确加载：
-
-  bashCopy# 临时开启调试日志
-  DEBUG=vuepress* npm start
+    
+      bashCopy# 临时开启调试日志
+      DEBUG=vuepress* npm start
 如果按照这些步骤操作后仍然遇到问题，请提供：
 
-  现有的 package.json 内容
-  config.js 的完整内容
-  运行 npm start 时的完整错误信息
+    现有的 package.json 内容
+    config.js 的完整内容
+    运行 npm start 时的完整错误信息
 
 我会根据具体情况提供更详细的解决方案。
